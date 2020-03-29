@@ -1,11 +1,13 @@
 package net.itinajero.app.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,6 +18,8 @@ import net.itinajero.app.model.Pelicula;
 @Controller
 public class HomeController {
 
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String goHome(){
 		return "home";
@@ -27,19 +31,26 @@ public class HomeController {
 		List <Pelicula> peliculas = getLista();
 
 		model.addAttribute("peliculas", peliculas);
+		model.addAttribute("fechaBusqueda", dateFormat.format(new Date()));
 		
 		return "home";
 	}
 	
-	@RequestMapping(value="/detail")
-	public String mostrarDetalle(Model model) {
-		String tituloPelicula = "Rapidos y furiosos";
+	@RequestMapping(value="/detail/{id}/{fecha}", method=RequestMethod.GET)
+	public String mostrarDetalle(Model model, @PathVariable("id") int idPelicula,@PathVariable("fecha") String fecha) {
+		
+		System.out.print("idPelicula: " + idPelicula);
+		System.out.print("fecha: " + fecha);
+		
+		// TODO - Buscar en la base de datos
+		
+		/* String tituloPelicula = "Rapidos y furiosos";
 		int duracion = 136;
 		double precioEntrada = 50;
 		
 		model.addAttribute("titulo", tituloPelicula);
 		model.addAttribute("duracion", duracion);
-		model.addAttribute("precio", precioEntrada);
+		model.addAttribute("precio", precioEntrada);*/
 		return "detalle";
 	}
 	
@@ -106,10 +117,26 @@ public class HomeController {
 			pelicula4.setImagen("kong.png");
 			pelicula4.setEstatus("Inactiva");
 			
+			Pelicula pelicula5 = new Pelicula();
+			pelicula5.setId(5);
+			pelicula5.setTitulo("Life");
+			pelicula5.setDuracion(104);
+			pelicula5.setClasificacion("B");
+			pelicula5.setGenero("Drama");
+			try {
+				pelicula5.setFechaEstreno(formatter.parse("10-06-2017"));
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			pelicula5.setImagen("estreno5.png");
+			pelicula5.setEstatus("Activa");
+			
 			lista.add(pelicula1);
 			lista.add(pelicula2);
 			lista.add(pelicula3);
 			lista.add(pelicula4);
+			lista.add(pelicula5);
 			
 			return lista;
 		
