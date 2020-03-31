@@ -1,3 +1,6 @@
+   
+ <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+ <spring:url value="/" var="urlRoot" />
     <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -11,9 +14,10 @@
           <a class="navbar-brand" href="#">My CineSite</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">            
+          <ul class="nav navbar-nav">  
+            <li><a href="${urlRoot }peliculas/index">Peliculas</a></li>          
             <li><a href="#">Acerca</a></li>
-            <li><a href="#">Login</a></li>            
+            <li><a href="#">Login</a></li>           
           </ul>
         </div><!--/.nav-collapse -->
       </div>
