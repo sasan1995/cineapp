@@ -42,8 +42,8 @@
 							<div class="panel-body">                           
 								<p>
 									Título Original : ${pelicula.titulo } <br>
-									Actores : <br>
-									Director:  <br>                  
+									Actores : ${pelicula.detalle.actores }<br>
+									Director:  ${pelicula.detalle.director }<br>                  
 									Clasificación: ${pelicula.clasificacion } <br>
 									Duración: ${pelicula.duracion } <br>
 									Género: ${pelicula.genero } <br>                  
@@ -117,6 +117,7 @@
 								<h3 class="panel-title">Trailer</h3>
 							</div>
 							<div class="panel-body">
+								<ifrane widht="100%" height="315" src="${pelicula.detalle.trailer }"></ifrane>
 							</div>
 						</div>           
 					</div> 
@@ -126,8 +127,7 @@
 								<h3 class="panel-title">SINOPSIS</h3>
 							</div>
 							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
-							</div>
+								<p>${pelicula.detalle.sinopsis}</p>
 						</div>                          
 					</div>
 				</div>

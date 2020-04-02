@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sun.tools.javac.parser.ReferenceParser.ParseException;
 
 import net.itinajero.app.model.Pelicula;
+import net.itinajero.app.service.IBannersService;
 import net.itinajero.app.service.IPeliculasService;
 import net.itinajero.app.util.Utileria;
 
 @Controller
 public class HomeController {
-	
+
+	@Autowired
+	private IBannersService serviceBanners; 
+
 	@Autowired
 	private IPeliculasService servicePeliculas;
 
@@ -41,6 +45,7 @@ public class HomeController {
 		model.addAttribute("fechas", listaFechas);
 		model.addAttribute("peliculas", peliculas);
 		model.addAttribute("fechaBusqueda", dateFormat.format(new Date()));
+		model.addAttribute("banners", serviceBanners.buscarTodos()); 
 		
 		System.out.println("buscando");
 		return "home";
@@ -55,6 +60,7 @@ public class HomeController {
 		model.addAttribute("fechas", listaFechas);
 		model.addAttribute("peliculas", peliculas);
 		model.addAttribute("fechaBusqueda", dateFormat.format(new Date()));
+		model.addAttribute("banners", serviceBanners.buscarTodos()); 
 		
 		return "home";
 	}
@@ -63,10 +69,7 @@ public class HomeController {
 	//public String mostrarDetalle(Model model, @PathVariable("id") int idPelicula,@PathVariable("fecha") String fecha) {
 	@RequestMapping(value="/detail/{id}/{fecha}", method=RequestMethod.GET)
 	public String mostrarDetalle(Model model, @PathVariable("id") int id,@PathVariable("fecha") String fecha) {
-		
-		System.out.print("idPelicula: " + id);
-		System.out.print("fecha: " + fecha);
-		
+
 		model.addAttribute("pelicula", servicePeliculas.buscarPorId(id));
 		
 		return "detalle";

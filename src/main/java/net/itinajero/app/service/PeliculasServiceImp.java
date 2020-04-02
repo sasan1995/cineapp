@@ -119,4 +119,22 @@ public class PeliculasServiceImp implements IPeliculasService {
 		lista.add(pelicula);
 	}
 
+	@Override
+	public List<String> buscarGeneros() {
+		List<String> generos = new LinkedList<>();
+		
+		generos.add("Accion");
+		generos.add("Aventura");
+		generos.add("Clasicas");
+		generos.add("Comedia Romantica");
+		generos.add("Drama");
+		generos.add("Terror");
+		generos.add("Infantil");
+		generos.add("Accion y Aventura");
+		generos.add("Romantica");
+		generos.add("Ciencia ficcion");
+		
+		return generos;
+	}
+
 }
