@@ -2,18 +2,28 @@ package net.itinajero.app.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Noticias")
 public class Noticia {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String titulo;
 	private Date fecha;
 	private String detalle;
 	private String estatus;
 	
-	public Noticia() {
-		System.out.print("const noticia");
+	public Noticia(){
+		//System.out.println("Constructor Noticia");
 		this.fecha = new Date();
-		this.estatus = "Activa";
+		this.estatus="Activa";
 	}
 
 	public int getId() {
@@ -29,7 +39,7 @@ public class Noticia {
 	}
 
 	public void setTitulo(String titulo) {
-		System.out.print("set titulo");
+		System.out.println("Set titulo");
 		this.titulo = titulo;
 	}
 
@@ -46,6 +56,7 @@ public class Noticia {
 	}
 
 	public void setDetalle(String detalle) {
+		System.out.println("Set Detalle");
 		this.detalle = detalle;
 	}
 
@@ -54,6 +65,7 @@ public class Noticia {
 	}
 
 	public void setEstatus(String estatus) {
+		System.out.println("Set estatus");
 		this.estatus = estatus;
 	}
 
@@ -62,6 +74,5 @@ public class Noticia {
 		return "Noticia [id=" + id + ", titulo=" + titulo + ", fecha=" + fecha + ", detalle=" + detalle + ", estatus="
 				+ estatus + "]";
 	}
-	
 	
 }
